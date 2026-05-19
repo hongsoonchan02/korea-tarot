@@ -25,13 +25,15 @@ export function TarotResultPage() {
     setCurrentStep('RESULT');
   }, [setCurrentStep]);
 
-  const resultCardIds = useMemo(() => {
-    return RESULT_COLUMNS.map((column, index) => ({
-      ...column,
-      cardId: selectedCardIds[index] ?? getFallbackCardId(index),
-      selectionOrder: index + 1,
-    }));
-  }, [selectedCardIds]);
+  const resultCardIds = useMemo(
+    () =>
+      RESULT_COLUMNS.map((column, index) => ({
+        ...column,
+        cardId: selectedCardIds[index] ?? getFallbackCardId(index),
+        selectionOrder: index + 1,
+      })),
+    [selectedCardIds],
+  );
 
   return (
     <section className="grid gap-8 pb-8">
@@ -45,8 +47,8 @@ export function TarotResultPage() {
               리딩 결과 #{id}
             </h1>
             <p className="max-w-3xl text-body-lg text-on-surface-variant">
-              선택된 3장의 카드가 과거, 현재, 미래의 흐름으로 리버시블 배치되어 있습니다. 현재 단계는
-              `RESULT`이며, 후속 단계에서 상세 해석과 면책 고지를 확장합니다.
+              선택된 3장의 카드가 과거, 현재, 미래의 흐름으로 배치됩니다. 상세 해석은
+              다음 단계에서 확장되며, 현재 화면은 결과 구조와 카드 배치를 우선 제공합니다.
             </p>
           </div>
         </div>
@@ -96,7 +98,9 @@ export function TarotResultPage() {
 
             <div className="rounded-2xl border border-white/10 bg-surface-container-lowest/60 px-4 py-4 text-body-md text-on-surface-variant">
               <p className="font-semibold text-on-surface">{userContent || '입력된 고민 없음'}</p>
-              <p className="mt-2">{label} 카드 해석 영역은 다음 단계에서 상세 텍스트로 확장됩니다.</p>
+              <p className="mt-2">
+                {label} 카드 해석 영역은 다음 단계에서 상세 텍스트로 확장됩니다.
+              </p>
             </div>
           </article>
         ))}

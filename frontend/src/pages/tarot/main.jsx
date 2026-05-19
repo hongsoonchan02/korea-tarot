@@ -25,11 +25,17 @@ export function TarotMainPage() {
   const navigate = useNavigate();
   const savedContent = useTarotStore((state) => state.userContent);
   const selectedCardIds = useTarotStore((state) => state.selectedCardIds);
+  const currentStep = useTarotStore((state) => state.currentStep);
   const setUserContent = useTarotStore((state) => state.setUserContent);
   const setCurrentStep = useTarotStore((state) => state.setCurrentStep);
   const setSelectedCardIds = useTarotStore((state) => state.setSelectedCardIds);
   const tarotInput = useTarotInput(savedContent);
   const isSelectionLocked = selectedCardIds.length >= 3;
+  const isSelectionVisible =
+    currentStep === 'SELECT' ||
+    currentStep === 'LOADING' ||
+    currentStep === 'RESULT' ||
+    selectedCardIds.length > 0;
 
   const progressLabel = useMemo(() => {
     if (tarotInput.characterCount === 0) {
@@ -57,7 +63,17 @@ export function TarotMainPage() {
   }
 
   function handleCardSelect(cardId) {
-    if (isSelectionLocked || selectedCardIds.includes(cardId)) {
+    if (selectedCardIds.includes(cardId)) {
+      const nextSelectedCardIds = selectedCardIds.filter(
+        (selectedCardId) => selectedCardId !== cardId,
+      );
+
+      setSelectedCardIds(nextSelectedCardIds);
+      setCurrentStep('SELECT');
+      return;
+    }
+
+    if (isSelectionLocked) {
       return;
     }
 
@@ -86,8 +102,8 @@ export function TarotMainPage() {
                 지금 고민을 입력해 주세요
               </h1>
               <p className="max-w-2xl text-body-lg text-on-surface-variant">
-                10자 이상 입력하면 카드 선택 단계로 이어질 준비가 됩니다. 500자까지 입력할 수 있고,
-                입력 내용은 세션 상태에 동기화됩니다.
+                10자 이상 입력하면 카드 선택 단계로 이어질 준비가 됩니다. 500자까지
+                입력할 수 있고, 입력 내용은 세션 상태에 동기화됩니다.
               </p>
             </div>
           </div>
@@ -145,7 +161,8 @@ export function TarotMainPage() {
                 Next step
               </p>
               <p className="text-body-md text-on-surface-variant">
-                버튼을 누르면 카드 선택 상태로 전환되고, 다음 작업에서 스프레드가 연결됩니다.
+                버튼을 누르면 카드 선택 상태로 전환되고, 카드 스프레드가 아래에
+                표시됩니다.
               </p>
             </div>
             <button
@@ -157,18 +174,25 @@ export function TarotMainPage() {
               카드 선택 시작
             </button>
             <div className="rounded-xl border border-dashed border-white/10 bg-surface-container-lowest/60 px-4 py-4 text-label-sm text-on-surface-variant">
-              <p>현재 단계: {isSelectionLocked ? 'LOCKED' : 'SELECT'}</p>
-              <p className="mt-1">카드 3장 선택 완료 시 /tarot/loading 으로 자동 이동합니다.</p>
+              <p>
+                현재 단계:{' '}
+                {isSelectionVisible ? (isSelectionLocked ? 'LOCKED' : 'SELECT') : 'INPUT'}
+              </p>
+              <p className="mt-1">
+                카드 3장 선택 완료 시 `/tarot/loading`으로 자동 이동합니다.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <CardSpreadGrid
-        locked={isSelectionLocked}
-        onCardSelect={handleCardSelect}
-        selectedCardIds={selectedCardIds}
-      />
+      {isSelectionVisible ? (
+        <CardSpreadGrid
+          locked={isSelectionLocked}
+          onCardSelect={handleCardSelect}
+          selectedCardIds={selectedCardIds}
+        />
+      ) : null}
     </section>
   );
 }
