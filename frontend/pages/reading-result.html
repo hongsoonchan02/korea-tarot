@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI 타로 리딩 결과 - Mystic AI Tarot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#2c1700",
+                        "on-tertiary": "#482900",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#e1e1f5",
+                        "surface": "#101221",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "error": "#ffb4ab",
+                        "background": "#101221",
+                        "error-container": "#93000a",
+                        "surface-container": "#1d1f2d",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-container": "#5b3800",
+                        "tertiary": "#ffb869",
+                        "inverse-on-surface": "#2e2f3f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary": "#3c0091",
+                        "inverse-surface": "#e1e1f5",
+                        "outline-variant": "#494454",
+                        "surface-bright": "#363848",
+                        "on-primary-fixed-variant": "#5516be",
+                        "primary": "#d0bcff",
+                        "primary-container": "#a078ff",
+                        "surface-container-highest": "#323443",
+                        "tertiary-container": "#ca801e",
+                        "on-primary-fixed": "#23005c",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "on-tertiary-container": "#3f2300",
+                        "inverse-primary": "#6d3bd7",
+                        "outline": "#958ea0",
+                        "surface-container-lowest": "#0b0d1b",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary": "#ffb95f",
+                        "surface-dim": "#101221",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-high": "#272938",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-variant": "#323443",
+                        "secondary-container": "#ee9800",
+                        "surface-container-low": "#191b29",
+                        "on-surface": "#e1e1f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "container-max": "1200px",
+                        "margin-mobile": "1rem",
+                        "section-gap": "4rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(20, 23, 46, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .primary-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+        .ai-voice-indicator {
+            background: linear-gradient(180deg, theme('colors.primary') 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/10 shadow-[0_0_20px_rgba(208,188,255,0.1)]">
+<div class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary flex items-center gap-2">
+                Mystic AI Tarot
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-sm text-label-sm" href="../index.html">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm text-label-sm active scale-95 duration-200 transition-transform" href="consultation-history.html">My Consultations</a>
+</div>
+<div class="flex items-center gap-4 text-primary dark:text-primary">
+<button class="hover:bg-primary/10 rounded-full transition-all p-2 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 flex flex-col gap-section-gap">
+<!-- Header -->
+<header class="text-center space-y-4">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">당신의 타로 리딩 결과</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">신비로운 우주의 기운이 당신의 질문에 답합니다. 카드가 전하는 메시지를 마음을 열고 받아들여 보세요.</p>
+</header>
+<!-- Tarot Cards Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-gutter">
+<!-- Card 1: Past -->
+<div class="flex flex-col items-center gap-6 group">
+<div class="bg-primary/20 text-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm border border-primary/30">
+                    1. 과거 / 원인
+                </div>
+<div class="relative w-full max-w-[280px] aspect-[2/3] rounded-xl overflow-hidden glass-panel border-secondary/50 primary-glow transition-transform duration-500 hover:-translate-y-2">
+<img alt="Tarot Card The Fool" class="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500" data-alt="A highly detailed digital illustration of 'The Fool' tarot card in a modern, celestial art style. The card features a youthful figure stepping off a cliff under a starry night sky, rendered in deep indigo and mystic purple hues. Soft golden accents highlight the character's clothing and the sun in the background. The mood is adventurous and ethereal, fitting a high-end spiritual AI application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNh7ANffizLC3C2r-e3elDDKingvMOzAkBDaa5-V-YQfXcyAzY764JJSwvrRYbqPDVW8YmCn4R03k2uU9AW-l5BIUPHzoVFYC08fY4XubRqlYHpZgplOYFHUO5s-Wh3xd6i_WYqrdYKzFMAf_rRNrdHJ9cicDCsVXUE2jJAhjMlqg6QzEnjaznu4_ch2HrwEvnifiKyQMm42yxP4iElrU3RZV-cw-UvBOZZ1owBja5ukzsB3wk50SVwsMbbOSIjvSvxgKGeonHLsU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<h3 class="font-headline-md text-headline-md text-secondary">The Fool</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">바보</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Present -->
+<div class="flex flex-col items-center gap-6 group">
+<div class="bg-primary/20 text-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm border border-primary/30">
+                    2. 현재 / 상황
+                </div>
+<div class="relative w-full max-w-[280px] aspect-[2/3] rounded-xl overflow-hidden glass-panel border-secondary/50 primary-glow transition-transform duration-500 hover:-translate-y-2">
+<img alt="Tarot Card The Magician" class="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500" data-alt="A striking digital painting of 'The Magician' tarot card, designed with a modern glassmorphism aesthetic. The central figure stands before an altar with esoteric symbols floating in mid-air, surrounded by glowing mystical energy. The color palette is dominated by deep midnight blues and rich purples, with crisp gold lines defining the magical artifacts. The lighting is soft yet focused, creating a sense of powerful concentration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzDpQp_G4Lklik1sJZgFmV6HuqIcMYpotuoZ8lpnh_36DdCnuhoApkiROismRbSdYmUOf-NgSjNpwcTCBq23EchIlSD4c1s1e-oV_rYDH5sk7LCAYjRcaz_yENXrMas7VBQ7Ya1jYPD-eiZDTltIPHnl5eA-PnOW0qHX0WwWMogkpBjOrtV3flaRv8Dh9T0GVeiXggEGOcU7CYm1egOQLC7WzcE1CAuAoPc4-dLMF3rpR2b24OocrJxFKkf7AFVjdfBnj53mGs9Cg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<h3 class="font-headline-md text-headline-md text-secondary">The Magician</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">마법사</p>
+</div>
+</div>
+</div>
+<!-- Card 3: Future -->
+<div class="flex flex-col items-center gap-6 group">
+<div class="bg-primary/20 text-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm border border-primary/30">
+                    3. 미래 / 조언
+                </div>
+<div class="relative w-full max-w-[280px] aspect-[2/3] rounded-xl overflow-hidden glass-panel border-secondary/50 primary-glow transition-transform duration-500 hover:-translate-y-2">
+<img alt="Tarot Card The Star" class="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500" data-alt="An ethereal digital artwork representing 'The Star' tarot card, set against a cosmic backdrop. A serene figure is depicted pouring water from two glowing urns into a crystalline pool, under a sky filled with radiant, oversized stars. The scene utilizes a moody palette of deep space blacks and soft lavenders, accented by brilliant white and soft gold starlight. The atmosphere is calm, hopeful, and deeply spiritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLQ3Nzhy93NiH_QDEJQP1xazmcIIVPzrDLIX-ahkhXEOJbizEunjcgyDqU2yQxrpYSnm6gi2-_ipedvgxFHhYhIDnTKXohx_OqN7hPDxrJRYvAsa0J8wNCDevI9IuS12_KDI1vPjWRLs3YvgEyBxoS_PEodaNc2t_qIje282vp-Kb_wrpNMA6ID7Ugwkv3Epg63vcqVh5bO4VwCA8rp8Kxf5up4if7pYZMx8wfc0WDNNKxqvmPVesm7LERFr0U4IEjRAkts6BJWoE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<h3 class="font-headline-md text-headline-md text-secondary">The Star</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">별</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Interpretation Section -->
+<section class="max-w-4xl mx-auto w-full space-y-8">
+<!-- Section 1: Detailed Breakdown -->
+<div class="glass-panel rounded-xl p-8 md:p-10 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 ai-voice-indicator"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                    1장씩 보는 카드 해석
+                </h2>
+<div class="space-y-8">
+<div class="space-y-2">
+<h4 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">과거 (원인) : The Fool</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            당신은 최근 새로운 시작을 맞이했거나, 다소 무모해 보일 수 있는 도전을 감행했을 수 있습니다. '바보' 카드는 순수함과 잠재력을 의미하지만, 동시에 현실적인 계획의 부재를 지적하기도 합니다. 당신의 현재 상황은 이러한 과거의 자유로운 영혼에서 비롯되었음을 암시합니다.
+                        </p>
+</div>
+<hr class="border-outline-variant/20"/>
+<div class="space-y-2">
+<h4 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">현재 (상황) : The Magician</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            지금 당신의 손에는 필요한 모든 도구가 쥐어져 있습니다. '마법사' 카드는 창조력, 집중력, 그리고 의지력을 나타냅니다. 현재 당신은 자신의 능력을 발휘하여 상황을 통제하고 원하는 바를 이룰 수 있는 강력한 에너지의 중심에 있습니다. 단, 그 힘을 올바른 방향으로 집중하는 것이 중요합니다.
+                        </p>
+</div>
+<hr class="border-outline-variant/20"/>
+<div class="space-y-2">
+<h4 class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">미래 (조언) : The Star</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            앞으로 다가올 미래는 희망적이고 치유의 에너지가 가득합니다. '별' 카드는 폭풍우가 지나간 후의 평온함과 영감을 상징합니다. 현재의 노력(마법사)이 긍정적인 결실을 맺어, 당신의 삶에 새로운 희망과 내면의 평화를 가져다 줄 것입니다. 직관을 믿고 긍정적인 마음가짐을 유지하세요.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Section 2: Final Advice -->
+<div class="glass-panel rounded-xl p-8 md:p-10 border-l-4 border-l-primary relative overflow-hidden primary-glow">
+<div class="absolute -right-10 -top-10 text-primary/10">
+<span class="material-symbols-outlined text-[120px]">psychology</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6 relative z-10">
+                    AI 마스터의 최종 총평 및 조언
+                </h2>
+<blockquote class="font-body-lg text-body-lg text-on-background leading-[1.8] relative z-10">
+                    "새로운 도전을 향한 당신의 순수한 열정(과거)은 이제 당신의 뛰어난 능력(현재)을 만나 구체화되고 있습니다. 지금은 자신의 능력을 의심하지 말고 적극적으로 활용해야 할 때입니다. 비록 과정 중에 불안함이 있을지라도, 당신이 가고 있는 이 길의 끝에는 평온과 밝은 희망(미래)이 기다리고 있음을 잊지 마십시오. 우주의 흐름이 당신을 돕고 있으니, 깊은 호흡으로 내면의 소리에 귀 기울이며 전진하시기 바랍니다."
+                </blockquote>
+</div>
+</section>
+<!-- Bottom Actions -->
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+<button class="w-full sm:w-auto px-8 py-4 rounded-full font-label-sm text-label-sm text-secondary border border-secondary hover:bg-secondary/10 transition-colors duration-300" onclick="window.location.href='../index.html'">
+                새로운 상담 시작하기
+            </button>
+<button class="w-full sm:w-auto px-8 py-4 rounded-full font-label-sm text-label-sm text-surface bg-primary hover:bg-primary-container primary-glow transition-all duration-300" onclick="window.location.href='consultation-history.html'">
+                마이페이지에서 확인하기
+            </button>
+</div>
+<!-- Disclaimer -->
+<p class="text-center font-label-sm text-label-sm text-outline mt-12 opacity-70">
+            AI 타로 해석 결과는 오락 및 참고용 콘텐츠이며, 전문적인 의학적, 법률적, 재무적 조언을 대체할 수 없습니다.
+        </p>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest full-width py-12 border-t border-outline-variant/10 flat no shadows">
+<div class="flex flex-col items-center gap-6 w-full max-w-container-max mx-auto px-margin-desktop">
+<div class="font-headline-md text-headline-md text-primary">
+                Mystic AI Tarot
+            </div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-all duration-300 font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-all duration-300 font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-all duration-300 font-label-sm text-label-sm" href="#">Contact Support</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant">
+                © 2024 Mystic AI Tarot. For entertainment purposes only.
+            </div>
+</div>
+</footer>
+</body></html>
