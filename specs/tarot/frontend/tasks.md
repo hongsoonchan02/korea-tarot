@@ -18,9 +18,9 @@
 
 - [x] **T008** 전체 화면 1200px 격리 및 공통 다크 테마 유지를 위한 글로벌 Layout 컴포넌트 마운트 (`frontend/src/app/layouts/BaseLayout.jsx`)
 - [x] **T009** 비로그인 유저 접근 감지 시 `/login` 경로로 튕겨내는 프론트엔드 Protected Route 보안 인증 가드 컴포넌트 개발 (`frontend/src/app/router/ProtectedRoute.jsx`)
-- [ ] **T010** 사용자 알림 피드백용 전역 가동형 공통 Toast 메시지 및 예외 처리 Modal 프레임워크 구현 (`frontend/src/components/common/Modal.jsx`, `frontend/src/components/common/Toast.jsx`)
-- [ ] **T011** Axios Interceptor 기반 서버 4xx/5xx 에러 포착 후 전역 모달과 연결해주는 공통 에러 핸들링 파이프라인 개설 (`frontend/src/api/interceptors.js`)
-- [ ] **T012** Zod 유효성 엔진을 기반으로 한 고민 문구 최소/최대 자수(10~500자) 검증 및 Prompt Injection 지시어 필터링 검증 스키마 설계 (`frontend/src/utils/validationSchema.js`)
+- [x] **T010** 사용자 알림 피드백용 전역 가동형 공통 Toast 메시지 및 예외 처리 Modal 프레임워크 구현 (`frontend/src/components/common/Modal.jsx`, `frontend/src/components/common/Toast.jsx`)
+- [x] **T011** Axios Interceptor 기반 서버 4xx/5xx 에러 포착 후 전역 모달과 연결해주는 공통 에러 핸들링 파이프라인 개설 (`frontend/src/api/interceptors.js`)
+- [x] **T012** Zod 유효성 엔진을 기반으로 한 고민 문구 최소/최대 자수(10~500자) 검증 및 Prompt Injection 지시어 필터링 검증 스키마 설계 (`frontend/src/utils/validationSchema.js`)
 
 ---
 
