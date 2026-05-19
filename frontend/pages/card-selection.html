@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>카드 선택 - Mystic AI Tarot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#2c1700",
+                        "on-tertiary": "#482900",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#e1e1f5",
+                        "surface": "#101221",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "error": "#ffb4ab",
+                        "background": "#101221",
+                        "error-container": "#93000a",
+                        "surface-container": "#1d1f2d",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-container": "#5b3800",
+                        "tertiary": "#ffb869",
+                        "inverse-on-surface": "#2e2f3f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary": "#3c0091",
+                        "inverse-surface": "#e1e1f5",
+                        "outline-variant": "#494454",
+                        "surface-bright": "#363848",
+                        "on-primary-fixed-variant": "#5516be",
+                        "primary": "#d0bcff",
+                        "primary-container": "#a078ff",
+                        "surface-container-highest": "#323443",
+                        "tertiary-container": "#ca801e",
+                        "on-primary-fixed": "#23005c",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "on-tertiary-container": "#3f2300",
+                        "inverse-primary": "#6d3bd7",
+                        "outline": "#958ea0",
+                        "surface-container-lowest": "#0b0d1b",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary": "#ffb95f",
+                        "surface-dim": "#101221",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-high": "#272938",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-variant": "#323443",
+                        "secondary-container": "#ee9800",
+                        "surface-container-low": "#191b29",
+                        "on-surface": "#e1e1f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "container-max": "1200px",
+                        "margin-mobile": "1rem",
+                        "section-gap": "4rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        "glow-primary": "0 0 20px rgba(139, 92, 246, 0.3)",
+                        "glow-selected": "0 0 30px rgba(208, 188, 255, 0.6)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .tarot-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            transform-origin: bottom center;
+        }
+        
+        .tarot-card:hover:not(.selected):not(.disabled) {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 0 25px rgba(208, 188, 255, 0.5);
+            z-index: 50;
+        }
+
+        .tarot-card.selected {
+            transform: translateY(-30px) scale(1.1);
+            box-shadow: 0 0 30px rgba(208, 188, 255, 0.8);
+            border: 2px solid #d0bcff;
+            z-index: 40;
+        }
+
+        .tarot-card.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+            filter: grayscale(80%);
+        }
+
+        .spread-container {
+            position: relative;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 2rem;
+            perspective: 1000px;
+        }
+
+        .card-wrapper {
+            position: absolute;
+            bottom: 0;
+            transform-origin: bottom center;
+        }
+
+        .glass-panel {
+            background: rgba(20, 23, 46, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-back-pattern {
+            background-image: 
+                radial-gradient(circle at center, rgba(208, 188, 255, 0.1) 0%, transparent 60%),
+                linear-gradient(45deg, #101221 25%, transparent 25%, transparent 75%, #101221 75%, #101221), 
+                linear-gradient(45deg, #101221 25%, transparent 25%, transparent 75%, #101221 75%, #101221);
+            background-color: #14172E;
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            background-position: 0 0, 0 0, 10px 10px;
+            border: 1px solid rgba(255, 185, 95, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-[0_0_20px_rgba(208,188,255,0.1)] docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary flex items-center gap-2" href="../index.html">
+                Mystic AI Tarot
+            </a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm text-label-sm" href="../index.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-sm text-label-sm" href="consultation-history.html">My Consultations</a>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="person" class="text-on-surface-variant hover:bg-primary/10 rounded-full transition-all p-2 flex items-center justify-center hover:text-primary active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<!-- Header & Instructions -->
+<header class="text-center mb-12 max-w-2xl mx-auto">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">
+                마음을 차분히 가라앉히고, 끌리는 카드 3장을 순서대로 선택하세요.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                과거, 현재, 미래를 나타내는 세 장의 카드가 당신의 질문에 답을 제시합니다.
+            </p>
+</header>
+<!-- Selection Tracker -->
+<section class="glass-panel w-full max-w-3xl rounded-xl p-6 mb-16 flex flex-col items-center">
+<div class="flex justify-center gap-8 md:gap-16 w-full">
+<!-- Slot 1: Past -->
+<div class="flex flex-col items-center gap-3">
+<span class="font-label-sm text-label-sm text-tertiary">과거(1)</span>
+<div class="w-16 h-24 md:w-20 md:h-32 border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center bg-surface-container-high transition-all duration-300" id="slot-1">
+<span class="font-headline-md text-headline-md text-outline-variant/50">1</span>
+</div>
+</div>
+<!-- Slot 2: Present -->
+<div class="flex flex-col items-center gap-3">
+<span class="font-label-sm text-label-sm text-secondary">현재(2)</span>
+<div class="w-16 h-24 md:w-20 md:h-32 border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center bg-surface-container-high transition-all duration-300" id="slot-2">
+<span class="font-headline-md text-headline-md text-outline-variant/50">2</span>
+</div>
+</div>
+<!-- Slot 3: Future -->
+<div class="flex flex-col items-center gap-3">
+<span class="font-label-sm text-label-sm text-primary">미래(3)</span>
+<div class="w-16 h-24 md:w-20 md:h-32 border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center bg-surface-container-high transition-all duration-300" id="slot-3">
+<span class="font-headline-md text-headline-md text-outline-variant/50">3</span>
+</div>
+</div>
+</div>
+<button class="mt-8 px-8 py-3 bg-surface-variant text-on-surface-variant font-label-sm text-label-sm rounded-full transition-all duration-300 opacity-50 cursor-not-allowed flex items-center gap-2" id="action-btn">
+                리딩 시작하기
+                <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+</button>
+</section>
+<!-- Card Spread -->
+<section class="w-full relative min-h-[500px] flex items-center justify-center">
+<div class="spread-container w-full max-w-4xl" id="card-spread">
+<!-- Cards will be injected by JS to handle the complex arc layout -->
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10 full-width py-12 mt-auto">
+<div class="flex flex-col items-center gap-6 w-full max-w-container-max mx-auto px-margin-desktop">
+<div class="font-headline-md text-headline-md text-primary">
+                Mystic AI Tarot
+            </div>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:text-secondary-fixed-dim transition-colors transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:text-secondary-fixed-dim transition-colors transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary hover:text-secondary-fixed-dim transition-colors transition-all duration-300" href="#">Contact Support</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant text-center">
+                © 2024 Mystic AI Tarot. For entertainment purposes only.
+            </div>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const spreadContainer = document.getElementById('card-spread');
+            const totalCards = 22;
+            let selectedCards = [];
+            const maxSelections = 3;
+            const actionBtn = document.getElementById('action-btn');
+
+            // Generate arc layout
+            const radius = 600; // Adjust for wider/tighter arc
+            const startAngle = -45; // degrees
+            const endAngle = 45; // degrees
+            const angleStep = (endAngle - startAngle) / (totalCards - 1);
+
+            for (let i = 0; i < totalCards; i++) {
+                const angle = startAngle + (angleStep * i);
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'card-wrapper group cursor-pointer';
+                
+                // Position calculations for arc
+                // Using CSS transform for positioning to keep bottom origin intact
+                wrapper.style.transform = `rotate(${angle}deg)`;
+                // wrapper.style.left = `calc(50% - 40px)`;
+                // wrapper.style.bottom = `-200px`;
+                
+                
+                const card = document.createElement('div');
+                card.className = 'tarot-card w-20 h-36 md:w-28 md:h-48 rounded-lg shadow-lg relative overflow-hidden card-back-pattern';
+                card.dataset.index = i;
+                
+                // Add inner border detail
+                const innerBorder = document.createElement('div');
+                innerBorder.className = 'absolute inset-2 border border-secondary/20 rounded pointer-events-none flex items-center justify-center';
+                
+                // Add esoteric center symbol
+                const centerSymbol = document.createElement('div');
+                centerSymbol.className = 'w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center';
+                const innerDiamond = document.createElement('div');
+                innerDiamond.className = 'w-4 h-4 bg-primary/20 rotate-45';
+                centerSymbol.appendChild(innerDiamond);
+                
+                innerBorder.appendChild(centerSymbol);
+                card.appendChild(innerBorder);
+                
+                // Selection Badge (hidden by default)
+                const badge = document.createElement('div');
+                badge.className = 'absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center opacity-0 transition-opacity duration-300 shadow-glow-primary z-10';
+                card.appendChild(badge);
+
+                wrapper.appendChild(card);
+                spreadContainer.appendChild(wrapper);
+
+                // Interaction
+                wrapper.addEventListener('click', () => handleCardSelect(card, badge));
+            }
+
+            function handleCardSelect(card, badge) {
+                if (card.classList.contains('disabled')) return;
+
+                const cardIndex = selectedCards.indexOf(card);
+
+                if (cardIndex > -1) {
+                    // Deselect
+                    selectedCards.splice(cardIndex, 1);
+                    card.classList.remove('selected');
+                    badge.style.opacity = '0';
+                    updateSelectionUI();
+                } else {
+                    // Select
+                    if (selectedCards.length < maxSelections) {
+                        selectedCards.push(card);
+                        card.classList.add('selected');
+                        badge.style.opacity = '1';
+                        updateSelectionUI();
+                    }
+                }
+            }
+
+            function updateSelectionUI() {
+                // Update badges on cards
+                selectedCards.forEach((c, idx) => {
+                    const badge = c.querySelector('.absolute.-top-3');
+                    if(badge) badge.textContent = idx + 1;
+                });
+
+                // Update Tracker Slots
+                for (let i = 1; i <= 3; i++) {
+                    const slot = document.getElementById(`slot-${i}`);
+                    if (selectedCards[i - 1]) {
+                        slot.classList.add('border-solid', 'bg-surface-bright', 'border-primary');
+                        slot.classList.remove('border-dashed', 'bg-surface-container-high', 'border-outline-variant');
+                        slot.innerHTML = `<div class="w-full h-full card-back-pattern rounded-md m-1 flex items-center justify-center"><span class="font-headline-md text-on-primary">${i}</span></div>`;
+                    } else {
+                        slot.classList.remove('border-solid', 'bg-surface-bright', 'border-primary');
+                        slot.classList.add('border-dashed', 'bg-surface-container-high', 'border-outline-variant');
+                        slot.innerHTML = `<span class="font-headline-md text-headline-md text-outline-variant/50">${i}</span>`;
+                    }
+                }
+
+                // Handle Max Selections (Disable others)
+                const allCards = document.querySelectorAll('.tarot-card');
+                if (selectedCards.length === maxSelections) {
+                    allCards.forEach(c => {
+                        if (!c.classList.contains('selected')) {
+                            c.classList.add('disabled');
+                        }
+                    });
+                    
+                    // Enable Action Button
+                    actionBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-surface-variant', 'text-on-surface-variant');
+                    actionBtn.classList.add('bg-primary', 'text-on-primary', 'hover:bg-primary-container', 'shadow-glow-primary', 'cursor-pointer', 'animate-pulse');
+                    
+                } else {
+                    allCards.forEach(c => c.classList.remove('disabled'));
+                    
+                    // Disable Action Button
+                    actionBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-surface-variant', 'text-on-surface-variant');
+                    actionBtn.classList.remove('bg-primary', 'text-on-primary', 'hover:bg-primary-container', 'shadow-glow-primary', 'cursor-pointer', 'animate-pulse');
+                }
+            }
+
+            actionBtn.addEventListener('click', () => {
+                if (selectedCards.length === maxSelections) {
+                    window.location.href = 'reading-result.html';
+                }
+            });
+            
+            // Adjust card spread layout visually
+            const wrappers = document.querySelectorAll('.card-wrapper');
+            wrappers.forEach((w, i) => {
+                 // Distribute horizontally
+                 const percent = (i / (totalCards - 1)) * 100;
+                 w.style.left = `calc(${percent}% - 2rem)`; // adjust for card width
+                 
+                 // Create arc effect vertically
+                 // Middle cards are higher up (lower bottom value)
+                 const distanceFromCenter = Math.abs((totalCards/2) - i - 0.5);
+                 const verticalOffset = Math.pow(distanceFromCenter, 1.8) * 2;
+                 w.style.bottom = `-${verticalOffset}px`;
+            });
+        });
+    </script>
+</body></html>

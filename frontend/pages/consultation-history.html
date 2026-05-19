@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>나의 타로 상담 기록 - Mystic AI Tarot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#2c1700",
+                        "on-tertiary": "#482900",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#e1e1f5",
+                        "surface": "#101221",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "error": "#ffb4ab",
+                        "background": "#101221",
+                        "error-container": "#93000a",
+                        "surface-container": "#1d1f2d",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-container": "#5b3800",
+                        "tertiary": "#ffb869",
+                        "inverse-on-surface": "#2e2f3f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary": "#3c0091",
+                        "inverse-surface": "#e1e1f5",
+                        "outline-variant": "#494454",
+                        "surface-bright": "#363848",
+                        "on-primary-fixed-variant": "#5516be",
+                        "primary": "#d0bcff",
+                        "primary-container": "#a078ff",
+                        "surface-container-highest": "#323443",
+                        "tertiary-container": "#ca801e",
+                        "on-primary-fixed": "#23005c",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "on-tertiary-container": "#3f2300",
+                        "inverse-primary": "#6d3bd7",
+                        "outline": "#958ea0",
+                        "surface-container-lowest": "#0b0d1b",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary": "#ffb95f",
+                        "surface-dim": "#101221",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-high": "#272938",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-variant": "#323443",
+                        "secondary-container": "#ee9800",
+                        "surface-container-low": "#191b29",
+                        "on-surface": "#e1e1f5",
+                        "success": "#81c995",
+                        "on-success": "#0d3a1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "container-max": "1200px",
+                        "margin-mobile": "1rem",
+                        "section-gap": "4rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .glass-card {
+            background: rgba(20, 23, 46, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            border-color: theme('colors.secondary-fixed-dim');
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/10 shadow-[0_0_20px_rgba(208,188,255,0.1)] flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary flex items-center gap-2">
+            Mystic AI Tarot
+        </div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-sm text-label-sm" href="../index.html">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm text-label-sm" href="consultation-history.html">My Consultations</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-primary/10 rounded-full transition-all p-2 text-primary dark:text-primary active:scale-95 duration-200 transition-transform">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<!-- Header -->
+<header class="mb-12 text-center md:text-left">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">나의 타로 상담 기록</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">과거에 나눴던 고민과 운명의 조언들을 다시 확인할 수 있습니다.</p>
+</header>
+<!-- History Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-12">
+<!-- Card 1 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 glow-hover transition-all duration-300 cursor-pointer relative group">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline">2024. 05. 20 - 14:30</span>
+<button aria-label="Delete" class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-on-surface line-clamp-2">요즘 직장 상사와의 갈등 때문에 너무 힘듭니다. 제가 이직을 준비하는 것이 맞을까요, 아니면 조금 더 버텨보는 것이 좋을까요?</p>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-2">
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A close-up shot of a single, highly detailed tarot card face down, resting on a deep velvet cloth. The lighting is low and mysterious, with a subtle violet glow illuminating the edges of the card. The mood is esoteric and cinematic, perfect for a spiritual reading context. The overall color palette leans heavily into dark indigo and soft gold accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcyx_mxCX7kaZwduu-QxX6z8Vx404dlY6-e5c5aBk6OZgYFyL-Q2Jylk_RlkhwmjYZStUMV33_5KxFPQlopk2dbIfjEr0bKrWFVMediTgHhsTFLUn3wtEeGd7rinqvORXsdoJe6-cuCgc71ELm-J8NQRtGA-n_eENbaiObWoh4KEmb-B0LsgNnrKpMRRAaUDmGZV0T2__PBc2iZl4FUadLr3K4veCmlbHwrkeytxUcdieDiLaOY_uSxVa2Hw6F9MvpjSbHB9J_kBg'); background-size: cover; background-position: center;"></div>
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A detailed view of a classic tarot card featuring intricate, esoteric line art, illuminated by a soft, directional light from the side. The card is placed on a dark, textured surface, creating a moody, atmospheric feel. The aesthetic combines traditional occult imagery with modern, clean presentation, utilizing a palette of deep navy and bright white highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAD4dUBWvQU84i01s4rwl4Skqauss1eW5givpS5uu4A1x20-zXNVcTPENc7yG4uznzOetvEC3O5hQxVHRCpdcn_rFayDEkPwN45CHK1yozPWXfIsqM-abvvFxjdixEQcHmOyxEhQmzsj0HTzqOo00IUG74ZO8fcef0DRVoNM0h47qO_bUTh02_W4N2RajyImpRaYJYkTNRS-4IhUpoDzRh4ws4cq9qWaAPfEYa20E-DpSOcnjFfjSEmWC2DO46hT-bkK0miSrrrDg4'); background-size: cover; background-position: center;"></div>
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A close-up shot of a single, highly detailed tarot card face down, resting on a deep velvet cloth. The lighting is low and mysterious, with a subtle violet glow illuminating the edges of the card. The mood is esoteric and cinematic, perfect for a spiritual reading context. The overall color palette leans heavily into dark indigo and soft gold accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3sVYR5ytvIaY89rZhbRhyAM3xQp7pzgTOStkqbe7xSqaPDDH3isNxBui7zAHObK04on5xM8rvzJOnh1zc7zZWsdMq53yrdFlY2HSHcF3lmCYeint8utJQh_GnvEBzBSw-LtyEQU5kuwVSYpScNwwPFUnChuVzMy5IerP8FBJGLFOgH1aav1gcFcVpRTIWEoi-rOtK9R47J3j2EEXvOu7UiCOlTv02ovRAiO0AAIk85FsuIIHgOL1DW_Epl1NEV1azg9Dl40QHf0w'); background-size: cover; background-position: center;"></div>
+</div>
+<span class="px-3 py-1 rounded-full bg-success/20 text-success font-label-sm text-label-sm border border-success/30">SUCCESS</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 glow-hover transition-all duration-300 cursor-pointer relative group">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline">2024. 05. 18 - 09:15</span>
+<button aria-label="Delete" class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-on-surface line-clamp-2">새로운 연애를 시작할 수 있을지 궁금합니다. 제게 다가오는 인연이 언제쯤 나타날까요?</p>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-2">
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A detailed view of a classic tarot card featuring intricate, esoteric line art, illuminated by a soft, directional light from the side. The card is placed on a dark, textured surface, creating a moody, atmospheric feel. The aesthetic combines traditional occult imagery with modern, clean presentation, utilizing a palette of deep navy and bright white highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBb8WE13wzgOJNpntLywZop9Nr_9QwpK1z5BU9FGOf1cl0RYQbnVj1so3dE-uLYQDCmEtx0ZedPjlTmxM5WWBL4uScMkcV9HOEWJz2aEc8SmhDgg8TOgkzOAV83I_FgW474PRDpu9RSk-VZxj5gJmmSog5HN6DiskBe_uLjywUoFtGlMuz3LHWRxDmeqzgA7WFeThzkItk-442Id9apvsqGrTUPeH76Eb4ViC9kw_2kCon6XKQrz-9ZxExVIEFUaZVFB1Xlo3n3Wvs'); background-size: cover; background-position: center;"></div>
+</div>
+<span class="px-3 py-1 rounded-full bg-error/20 text-error font-label-sm text-label-sm border border-error/30">FAIL</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-4 glow-hover transition-all duration-300 cursor-pointer relative group">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline">2024. 05. 10 - 22:00</span>
+<button aria-label="Delete" class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-on-surface line-clamp-2">현재 진행 중인 프로젝트가 잘 마무리될 수 있을까요? 큰 장애물은 없는지 알고 싶습니다.</p>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-2">
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A close-up shot of a single, highly detailed tarot card face down, resting on a deep velvet cloth. The lighting is low and mysterious, with a subtle violet glow illuminating the edges of the card. The mood is esoteric and cinematic, perfect for a spiritual reading context. The overall color palette leans heavily into dark indigo and soft gold accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHFAj4JSoWcH8hDywniYGOm2lHb6RZIiUzx-7MTJAYDROjL5q7X97T9i4SRoW6j9hC_BkJho4-l_b3kXOTkhBLNO6oa2t-AqIOTYUQJ6XqP9v9MsmBEZJpQtRBz8g-NcaMwaOWmbTLluspejCzAyjEnx0L-P8a6Ooylj972lZKPiF52v5w3sU7L8uCsB1Cp3eHWqpKplQk5nTvJrPdobm5L0oBxztgiONL93iVZ5RR1qOEucsgginvvBTf5WJ8HvfbG3jpjAJdqkg'); background-size: cover; background-position: center;"></div>
+<div class="w-12 h-16 rounded border border-outline-variant/30 bg-surface-container-high overflow-hidden" data-alt="A detailed view of a classic tarot card featuring intricate, esoteric line art, illuminated by a soft, directional light from the side. The card is placed on a dark, textured surface, creating a moody, atmospheric feel. The aesthetic combines traditional occult imagery with modern, clean presentation, utilizing a palette of deep navy and bright white highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPY7rscVKmJcn8qbCCtrjiYn6m8ZcxXToU6ueSI-NwEO3kWGwotajyzuqQPklexqmzU6ZXb6A7gmpGK2ektyvFCmJiMWcmtKQMwZGh86B_WMgQzn1V2ApjlbC1dvZHuyhKS71OLYgyZaeramvQA0pFPpls9xnGYHaDtoKUkFcIocOo2tfP-9W_LHR5iXtBZsZYcIy3qRzLNhYVpws9I7jNZGqiumlqMZY-cLXyDnOdG-hG20hLi2KpZv24jlyvIoZruK1pN1TpWPk'); background-size: cover; background-position: center;"></div>
+</div>
+<span class="px-3 py-1 rounded-full bg-success/20 text-success font-label-sm text-label-sm border border-success/30">SUCCESS</span>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="flex justify-center mt-12">
+<button class="bg-surface-container-highest hover:bg-primary/20 text-primary border border-primary/30 px-8 py-3 rounded-full font-label-sm text-label-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(208,188,255,0.2)] flex items-center gap-2">
+                더보기 (Load More)
+                <span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest full-width py-12 border-t border-outline-variant/10 flex flex-col items-center gap-6 w-full max-w-container-max mx-auto px-margin-desktop mt-auto">
+<div class="font-headline-md text-headline-md text-primary">
+            Mystic AI Tarot
+        </div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed-dim transition-colors duration-300 font-label-sm text-label-sm" href="#">Contact Support</a>
+</div>
+<div class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md text-center mt-4">
+            © 2024 Mystic AI Tarot. For entertainment purposes only.
+        </div>
+</footer>
+</body></html>
