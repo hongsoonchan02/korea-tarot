@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mystic AI Tarot - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#2c1700",
+                        "on-tertiary": "#482900",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-background": "#e1e1f5",
+                        "surface": "#101221",
+                        "on-secondary": "#472a00",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "error": "#ffb4ab",
+                        "background": "#101221",
+                        "error-container": "#93000a",
+                        "surface-container": "#1d1f2d",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary-container": "#5b3800",
+                        "tertiary": "#ffb869",
+                        "inverse-on-surface": "#2e2f3f",
+                        "surface-tint": "#d0bcff",
+                        "on-primary": "#3c0091",
+                        "inverse-surface": "#e1e1f5",
+                        "outline-variant": "#494454",
+                        "surface-bright": "#363848",
+                        "on-primary-fixed-variant": "#5516be",
+                        "primary": "#d0bcff",
+                        "primary-container": "#a078ff",
+                        "surface-container-highest": "#323443",
+                        "tertiary-container": "#ca801e",
+                        "on-primary-fixed": "#23005c",
+                        "on-primary-container": "#340080",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "on-tertiary-container": "#3f2300",
+                        "inverse-primary": "#6d3bd7",
+                        "outline": "#958ea0",
+                        "surface-container-lowest": "#0b0d1b",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "secondary": "#ffb95f",
+                        "surface-dim": "#101221",
+                        "secondary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container-high": "#272938",
+                        "tertiary-fixed": "#ffdcbb",
+                        "surface-variant": "#323443",
+                        "secondary-container": "#ee9800",
+                        "surface-container-low": "#191b29",
+                        "on-surface": "#e1e1f5"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "container-max": "1200px",
+                        "margin-mobile": "1rem",
+                        "section-gap": "4rem"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(20, 23, 46, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .primary-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-[0_0_20px_rgba(208,188,255,0.1)] full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diamond</span>
+                Mystic AI Tarot
+            </div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-sm text-label-sm scale-95 duration-200 transition-transform" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-sm text-label-sm hover:bg-primary/10 rounded-full transition-all px-4 py-2" href="pages/consultation-history.html">My Consultations</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:bg-primary/10 rounded-full p-2 flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-3xl mx-auto px-margin-mobile md:px-0 pt-16 pb-24 flex flex-col items-center justify-center relative">
+<!-- Decorative Ambient Light -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<div class="text-center mb-10 w-full animate-[fadeIn_1s_ease-out]">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4 tracking-tight drop-shadow-sm">
+                무엇이 당신의 마음을 어지럽히나요?
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto leading-relaxed">
+                오늘의 고민을 자세히 적어주세요. AI 타로 마스터가 당신의 길을 비춰드립니다.
+            </p>
+</div>
+<!-- Input Area Container -->
+<div class="glass-panel w-full rounded-2xl p-6 md:p-8 flex flex-col gap-6 relative group transition-all duration-300 hover:border-primary/30">
+<div class="relative w-full">
+<textarea class="w-full h-48 bg-surface-container/50 text-on-surface font-body-lg text-body-lg rounded-xl p-5 border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none resize-none transition-all duration-300 placeholder:text-on-surface-variant/50" id="tarot-input" maxlength="500" placeholder="최소 10자 이상, 고민을 자세히 적어주셔야 정확한 리딩이 가능합니다. (최대 500자)
+
+예시: 요즘 이직을 고민하고 있는데, 지금 다니는 회사를 계속 다니는 것이 좋을지, 아니면 새로운 도전을 하는 것이 좋을지 모르겠어요."></textarea>
+<div class="absolute bottom-4 right-5 flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70" id="char-counter">
+                        0 / 500
+                    </span>
+</div>
+</div>
+<!-- CTA Button (Disabled State Initial) -->
+<button class="w-full py-4 rounded-xl font-headline-md text-headline-md text-on-surface-variant bg-surface-variant cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3 mt-2" disabled="" id="submit-btn">
+                운명의 카드 선택하기
+                <span class="material-symbols-outlined opacity-50">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10 full-width py-12 mt-auto">
+<div class="flex flex-col items-center gap-6 w-full max-w-container-max mx-auto px-margin-desktop">
+<div class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">diamond</span>
+                Mystic AI Tarot
+            </div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 font-label-sm text-label-sm hover:text-secondary-fixed-dim" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 font-label-sm text-label-sm hover:text-secondary-fixed-dim" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 font-label-sm text-label-sm hover:text-secondary-fixed-dim" href="#">Contact Support</a>
+</nav>
+<p class="font-body-md text-body-md text-on-surface-variant/60 text-center">
+                © 2024 Mystic AI Tarot. For entertainment purposes only.
+            </p>
+</div>
+</footer>
+<script>
+        // Simple client-side interaction for textarea
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.getElementById('tarot-input');
+            const counter = document.getElementById('char-counter');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            textarea.addEventListener('input', (e) => {
+                const len = e.target.value.length;
+                counter.textContent = `${len} / 500`;
+                
+                if (len >= 10) {
+                    submitBtn.disabled = false;
+                    submitBtn.className = "w-full py-4 rounded-xl font-headline-md text-headline-md text-on-primary bg-primary cursor-pointer transition-all duration-300 flex items-center justify-center gap-3 mt-2 primary-glow hover:bg-primary-container hover:scale-[1.02] active:scale-95";
+                    submitBtn.innerHTML = `운명의 카드 선택하기 <span class="material-symbols-outlined">arrow_forward</span>`;
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.className = "w-full py-4 rounded-xl font-headline-md text-headline-md text-on-surface-variant bg-surface-variant cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3 mt-2";
+                    submitBtn.innerHTML = `운명의 카드 선택하기 <span class="material-symbols-outlined opacity-50">arrow_forward</span>`;
+                }
+            });
+
+            submitBtn.addEventListener('click', () => {
+                if (!submitBtn.disabled) {
+                    window.location.href = 'pages/card-selection.html';
+                }
+            });
+        });
+    </script>
+</body></html>
