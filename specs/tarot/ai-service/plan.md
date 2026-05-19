@@ -1,4 +1,4 @@
-# Implementation Plan: AI Tarot AI-Service
+﻿# Implementation Plan: AI Tarot AI-Service
 
 **Branch**: `feat/tarot-ai-core`  
 **Date**: 2026-05-19  

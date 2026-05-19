@@ -1,4 +1,4 @@
-# Feature Specification: AI Tarot AI-Service
+﻿# Feature Specification: AI Tarot AI-Service
 
 **Feature Branch**: `feat/tarot-ai-core`
 **Created**: 2026-05-19

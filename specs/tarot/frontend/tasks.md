@@ -1,23 +1,23 @@
-# Tasks: AI Tarot Frontend Application
+﻿# Tasks: AI Tarot Frontend Application
 
 ## Phase 1: Setup (Shared Infrastructure)
 **Purpose**: 프로젝트 뼈대 구성 및 다크모드 공통 스타일, 코어 클라이언트 베이스라인 구축
 
 - [x] **T001** React 19 + Vite 6 환경 기반 프론트엔드 기본 스켈레톤 아키텍처 초기화 (`frontend/package.json`, `frontend/src/main.jsx`)
-- [ ] **T002** 딥 인디고 및 미스틱 퍼플 컬러 테마 사양 반영을 위한 Tailwind CSS 셋업 및 확장 구성 스크립트 작성 (`frontend/tailwind.config.js`, `frontend/src/styles/globals.css`)
-- [ ] **T003** 하드웨어 가속 기반 컴포넌트 애니메이션을 위한 Framer Motion 라이브러리 연동 및 스타일 클래스 최적화 검증
-- [ ] **T004** 15초 하드 타임아웃 기본 정책 및 글로벌 에러 인지 구조를 포함한 Axios 공통 클라이언트 인스턴스 모듈 구축 (`frontend/src/api/client.js`)
-- [ ] **T005** React Router DOM v7을 활용한 SPA 클라이언트 페이지 라우터 명세 매핑 구성 (`frontend/src/app/router/index.jsx`)
-- [ ] **T006** TanStack Query v5 데이터 동기화 프로바이더 선언 및 캐시 타임 옵션 초기 셋업 (`frontend/src/app/providers/QueryProvider.jsx`)
-- [ ] **T007** Zustand를 이용한 인증(Auth) 및 타로 세션(TarotSession) 독립 상태 저장소 기본 세팅 (`frontend/src/store/useAuthStore.js`, `frontend/src/store/useTarotStore.js`)
+- [x] **T002** 딥 인디고 및 미스틱 퍼플 컬러 테마 사양 반영을 위한 Tailwind CSS 셋업 및 확장 구성 스크립트 작성 (`frontend/tailwind.config.js`, `frontend/src/styles/globals.css`)
+- [x] **T003** 하드웨어 가속 기반 컴포넌트 애니메이션을 위한 Framer Motion 라이브러리 연동 및 스타일 클래스 최적화 검증
+- [x] **T004** 15초 하드 타임아웃 기본 정책 및 글로벌 에러 인지 구조를 포함한 Axios 공통 클라이언트 인스턴스 모듈 구축 (`frontend/src/api/client.js`)
+- [x] **T005** React Router DOM v7을 활용한 SPA 클라이언트 페이지 라우터 명세 매핑 구성 (`frontend/src/app/router/index.jsx`)
+- [x] **T006** TanStack Query v5 데이터 동기화 프로바이더 선언 및 캐시 타임 옵션 초기 셋업 (`frontend/src/app/providers/QueryProvider.jsx`)
+- [x] **T007** Zustand를 이용한 인증(Auth) 및 타로 세션(TarotSession) 독립 상태 저장소 기본 세팅 (`frontend/src/store/useAuthStore.js`, `frontend/src/store/useTarotStore.js`)
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 **Purpose**: 인증 방어막, 글로벌 에러 바운더리, 폼 검증 스키마 등 코어 서비스 가동을 위한 필수 제어 기반 구축
 
-- [ ] **T008** 전체 화면 1200px 격리 및 공통 다크 테마 유지를 위한 글로벌 Layout 컴포넌트 마운트 (`frontend/src/app/layouts/BaseLayout.jsx`)
-- [ ] **T009** 비로그인 유저 접근 감지 시 `/login` 경로로 튕겨내는 프론트엔드 Protected Route 보안 인증 가드 컴포넌트 개발 (`frontend/src/app/router/ProtectedRoute.jsx`)
+- [x] **T008** 전체 화면 1200px 격리 및 공통 다크 테마 유지를 위한 글로벌 Layout 컴포넌트 마운트 (`frontend/src/app/layouts/BaseLayout.jsx`)
+- [x] **T009** 비로그인 유저 접근 감지 시 `/login` 경로로 튕겨내는 프론트엔드 Protected Route 보안 인증 가드 컴포넌트 개발 (`frontend/src/app/router/ProtectedRoute.jsx`)
 - [ ] **T010** 사용자 알림 피드백용 전역 가동형 공통 Toast 메시지 및 예외 처리 Modal 프레임워크 구현 (`frontend/src/components/common/Modal.jsx`, `frontend/src/components/common/Toast.jsx`)
 - [ ] **T011** Axios Interceptor 기반 서버 4xx/5xx 에러 포착 후 전역 모달과 연결해주는 공통 에러 핸들링 파이프라인 개설 (`frontend/src/api/interceptors.js`)
 - [ ] **T012** Zod 유효성 엔진을 기반으로 한 고민 문구 최소/최대 자수(10~500자) 검증 및 Prompt Injection 지시어 필터링 검증 스키마 설계 (`frontend/src/utils/validationSchema.js`)

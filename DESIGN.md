@@ -1,4 +1,4 @@
----
+﻿---
 name: Ethereal Intelligence
 colors:
   surface: '#101221'

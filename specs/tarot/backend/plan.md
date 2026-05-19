@@ -1,4 +1,4 @@
-# Implementation Plan: AI Tarot Backend Application
+﻿# Implementation Plan: AI Tarot Backend Application
 
 **Branch**: `feat/tarot-backend-core`  
 **Date**: 2026-05-19  

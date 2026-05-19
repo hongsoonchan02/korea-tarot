@@ -1,4 +1,4 @@
-# Mystic AI Tarot AI-Service Constitution
+﻿# Mystic AI Tarot AI-Service Constitution
 
 ## Core Principles
 

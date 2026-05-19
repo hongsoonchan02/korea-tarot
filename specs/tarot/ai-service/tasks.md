@@ -1,4 +1,4 @@
-# Tasks: AI Tarot AI-Service
+﻿# Tasks: AI Tarot AI-Service
 
 ## Phase 1: Setup (Shared Infrastructure)
 **Purpose**: 파이썬 의존성 환경 셋업, FastAPI ASGI 인프라 구축 및 환경 변수 시큐어 로더 셋업

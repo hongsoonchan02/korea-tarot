@@ -1,17 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-function AppBootstrap() {
-  return (
-    <main>
-      <h1>Mystic AI Tarot</h1>
-      <p>Frontend application shell is ready.</p>
-    </main>
-  );
-}
+import { QueryProvider } from './app/providers/QueryProvider';
+import { AppRouterProvider } from './app/router';
+import './styles/globals.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AppBootstrap />
+    <QueryProvider>
+      <AppRouterProvider />
+    </QueryProvider>
   </StrictMode>,
 );

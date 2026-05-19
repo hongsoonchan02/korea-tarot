@@ -1,4 +1,4 @@
-# Tasks: AI Tarot Backend Application
+﻿# Tasks: AI Tarot Backend Application
 
 ## Phase 1: Setup (Shared Infrastructure)
 **Purpose**: 프로젝트 코어 프레임워크 초기화 및 Gradle 의존성 구성, 마이그레이션 도구 및 기본 인프라 환경 구축

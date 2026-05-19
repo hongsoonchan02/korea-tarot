@@ -1,4 +1,4 @@
-# Mystic AI Tarot Frontend Constitution
+﻿# Mystic AI Tarot Frontend Constitution
 
 ## Core Principles
 
