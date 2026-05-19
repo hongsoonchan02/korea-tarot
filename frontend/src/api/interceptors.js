@@ -6,6 +6,7 @@ import {
 import { useUiStore } from '../store/useUiStore';
 
 const INTERCEPTOR_FLAG = Symbol.for('mystic-ai-tarot.interceptors');
+const NORMALIZED_ERROR_FLAG = Symbol.for('mystic-ai-tarot.normalized-error');
 
 function getErrorPresentation(normalizedError) {
   if (
@@ -46,6 +47,7 @@ export function registerApiInterceptors(client = apiClient) {
     (response) => response,
     (error) => {
       const normalizedError = normalizeApiError(error);
+      const originalError = normalizedError.originalError ?? error;
       const uiStore = useUiStore.getState();
       const presentation = getErrorPresentation(normalizedError);
 
@@ -66,7 +68,11 @@ export function registerApiInterceptors(client = apiClient) {
         });
       }
 
-      return Promise.reject(normalizedError);
+      if (originalError && typeof originalError === 'object') {
+        originalError[NORMALIZED_ERROR_FLAG] = normalizedError;
+      }
+
+      return Promise.reject(originalError);
     },
   );
 
@@ -80,4 +86,16 @@ export function registerApiInterceptors(client = apiClient) {
   client[INTERCEPTOR_FLAG] = controller;
 
   return controller;
+}
+
+export function getNormalizedApiError(error) {
+  if (
+    error &&
+    typeof error === 'object' &&
+    NORMALIZED_ERROR_FLAG in error
+  ) {
+    return error[NORMALIZED_ERROR_FLAG];
+  }
+
+  return normalizeApiError(error);
 }

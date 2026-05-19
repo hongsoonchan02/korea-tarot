@@ -7,6 +7,17 @@ const DEFAULT_MODAL = {
   confirmLabel: 'Confirm',
 };
 
+const toastTimers = new Map();
+
+function clearToastTimer(toastId) {
+  const timeoutId = toastTimers.get(toastId);
+
+  if (timeoutId) {
+    window.clearTimeout(timeoutId);
+    toastTimers.delete(toastId);
+  }
+}
+
 export const useUiStore = create((set) => ({
   modal: DEFAULT_MODAL,
   toasts: [],
@@ -49,17 +60,25 @@ export const useUiStore = create((set) => ({
     }));
 
     if (typeof window !== 'undefined' && duration > 0) {
-      window.setTimeout(() => {
+      const timeoutId = window.setTimeout(() => {
+        clearToastTimer(toastId);
         set((state) => ({
           toasts: state.toasts.filter((toast) => toast.id !== toastId),
         }));
       }, duration);
+
+      toastTimers.set(toastId, timeoutId);
     }
 
     return toastId;
   },
-  removeToast: (toastId) =>
+  removeToast: (toastId) => {
+    if (typeof window !== 'undefined') {
+      clearToastTimer(toastId);
+    }
+
     set((state) => ({
       toasts: state.toasts.filter((toast) => toast.id !== toastId),
-    })),
+    }));
+  },
 }));
