@@ -7,6 +7,8 @@ import {
 
 import { AuthLayout } from '../layouts/AuthLayout';
 import { BaseLayout } from '../layouts/BaseLayout';
+import { TarotMainPage } from '../../pages/tarot/main';
+import { TarotResultPage } from '../../pages/tarot/result';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuthStore } from '../../store/useAuthStore';
 
@@ -49,29 +51,11 @@ function LoginPage() {
   );
 }
 
-function TarotMainPage() {
-  return (
-    <AppShell
-      title="Tarot main route scaffold"
-      description="The concern input flow and card spread interaction will mount on this route."
-    />
-  );
-}
-
 function TarotLoadingPage() {
   return (
     <AppShell
       title="Tarot loading route scaffold"
       description="The animated loading scene and timeout handling will mount on this route."
-    />
-  );
-}
-
-function TarotResultPage() {
-  return (
-    <AppShell
-      title="Tarot result route scaffold"
-      description="The final reading result view and disclaimer area will mount on this route."
     />
   );
 }

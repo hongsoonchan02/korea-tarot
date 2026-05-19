@@ -27,13 +27,13 @@
 ## Phase 3: User Story 1 (P1) - 첫 상담 코어 프로세스 🎯 MVP
 **Goal**: 유저가 고민을 입력하고 카드를 무결하게 골라 결과 창까지 안전하게 안착하는 핵심 여정의 컴포넌트 풀 완성
 
-- [ ] **T013** Zod 스키마 연동 및 공백 우회 정규식 가드가 결합된 고민 입력 전용 커스텀 입력 검증 훅 개발 (`frontend/src/hooks/useTarotInput.js`)
-- [ ] **T014** `/tarot/main` 경로에 대응하는 고민 입력 및 글자 수 실시간 트래킹 UI 화면 마운트 (`frontend/src/pages/tarot/main.jsx`)
-- [ ] **T015** 78장/22장 풀 뒷면 그래픽 처리 및 Hover 시 미스틱 퍼플 발광 효과를 내포한 개별 TarotCard 원자 컴포넌트 설계 (`frontend/src/components/tarot/TarotCard.jsx`)
-- [ ] **T016** Framer Motion을 이용하여 스프레드 형태의 22장 카드 Grid 시스템 컴포넌트 빌드 및 클릭 제어 처리 (`frontend/src/components/tarot/CardSpreadGrid.jsx`)
-- [ ] **T017** Zustand TarotSessionStore와 결합하여 카드 3장의 순차 선택 제어 및 과거/현재/미래 숫자 배지 실시간 업데이트, 추가 선택 락(Lock) 로직 구현
-- [ ] **T018** 최종 결과 페이지 라우터 마운트 및 과거/현재/미래 3열 카드 리버시블 배치 구조 레이아웃 설계 (`frontend/src/pages/tarot/result.jsx`)
-- [ ] **T019** 법적 책임 제한 수호를 위한 정적 텍스트 기반 Disclaimer 면책 고지 컴포넌트 제작 및 결과 뷰 최하단 부착 (`frontend/src/components/tarot/Disclaimer.jsx`)
+- [x] **T013** Zod 스키마 연동 및 공백 우회 정규식 가드가 결합된 고민 입력 전용 커스텀 입력 검증 훅 개발 (`frontend/src/hooks/useTarotInput.js`)
+- [x] **T014** `/tarot/main` 경로에 대응하는 고민 입력 및 글자 수 실시간 트래킹 UI 화면 마운트 (`frontend/src/pages/tarot/main.jsx`)
+- [x] **T015** 78장/22장 풀 뒷면 그래픽 처리 및 Hover 시 미스틱 퍼플 발광 효과를 내포한 개별 TarotCard 원자 컴포넌트 설계 (`frontend/src/components/tarot/TarotCard.jsx`)
+- [x] **T016** Framer Motion을 이용하여 스프레드 형태의 22장 카드 Grid 시스템 컴포넌트 빌드 및 클릭 제어 처리 (`frontend/src/components/tarot/CardSpreadGrid.jsx`)
+- [x] **T017** Zustand TarotSessionStore와 결합하여 카드 3장의 순차 선택 제어 및 과거/현재/미래 숫자 배지 실시간 업데이트, 추가 선택 락(Lock) 로직 구현
+- [x] **T018** 최종 결과 페이지 라우터 마운트 및 과거/현재/미래 3열 카드 리버시블 배치 구조 레이아웃 설계 (`frontend/src/pages/tarot/result.jsx`)
+- [x] **T019** 법적 책임 제한 수호를 위한 정적 텍스트 기반 Disclaimer 면책 고지 컴포넌트 제작 및 결과 뷰 최하단 부착 (`frontend/src/components/tarot/Disclaimer.jsx`)
 
 ---
 
