@@ -1,4 +1,4 @@
-# Frontend Verification Checklist: AI Tarot Application
+﻿# Frontend Verification Checklist: AI Tarot Application
 
 **Purpose**: AI 타로 프론트엔드 애플리케이션 프로덕션 배포 전, 기술 헌장 규칙 및 사용자 시나리오 명세 충족 여부를 확인하는 최종 상호 정밀 검증용 체크리스트입니다.
 **Feature**: `/specs/tarot/frontend/spec.md`

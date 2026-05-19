@@ -1,4 +1,4 @@
-시니어 풀스택 개발자 관점에서 제공해주신 프론트엔드 Spec Kit 파일 5종(constitution.md, spec.md, plan.md, tasks.md, checklist.md)을 정밀 상호 검증(Cross-Checking)했습니다.
+﻿시니어 풀스택 개발자 관점에서 제공해주신 프론트엔드 Spec Kit 파일 5종(constitution.md, spec.md, plan.md, tasks.md, checklist.md)을 정밀 상호 검증(Cross-Checking)했습니다.
 
 🔍 정밀 검토 결과 및 수정 사항
 tasks.md와 checklist.md ID 및 내용 일치성 트래킹:

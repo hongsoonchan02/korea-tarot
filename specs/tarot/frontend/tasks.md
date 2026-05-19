@@ -1,12 +1,12 @@
-# Tasks: AI Tarot Frontend Application
+﻿# Tasks: AI Tarot Frontend Application
 
 ## Phase 1: Setup (Shared Infrastructure)
 **Purpose**: 프로젝트 뼈대 구성 및 다크모드 공통 스타일, 코어 클라이언트 베이스라인 구축
 
 - [x] **T001** React 19 + Vite 6 환경 기반 프론트엔드 기본 스켈레톤 아키텍처 초기화 (`frontend/package.json`, `frontend/src/main.jsx`)
-- [ ] **T002** 딥 인디고 및 미스틱 퍼플 컬러 테마 사양 반영을 위한 Tailwind CSS 셋업 및 확장 구성 스크립트 작성 (`frontend/tailwind.config.js`, `frontend/src/styles/globals.css`)
-- [ ] **T003** 하드웨어 가속 기반 컴포넌트 애니메이션을 위한 Framer Motion 라이브러리 연동 및 스타일 클래스 최적화 검증
-- [ ] **T004** 15초 하드 타임아웃 기본 정책 및 글로벌 에러 인지 구조를 포함한 Axios 공통 클라이언트 인스턴스 모듈 구축 (`frontend/src/api/client.js`)
+- [x] **T002** 딥 인디고 및 미스틱 퍼플 컬러 테마 사양 반영을 위한 Tailwind CSS 셋업 및 확장 구성 스크립트 작성 (`frontend/tailwind.config.js`, `frontend/src/styles/globals.css`)
+- [x] **T003** 하드웨어 가속 기반 컴포넌트 애니메이션을 위한 Framer Motion 라이브러리 연동 및 스타일 클래스 최적화 검증
+- [x] **T004** 15초 하드 타임아웃 기본 정책 및 글로벌 에러 인지 구조를 포함한 Axios 공통 클라이언트 인스턴스 모듈 구축 (`frontend/src/api/client.js`)
 - [ ] **T005** React Router DOM v7을 활용한 SPA 클라이언트 페이지 라우터 명세 매핑 구성 (`frontend/src/app/router/index.jsx`)
 - [ ] **T006** TanStack Query v5 데이터 동기화 프로바이더 선언 및 캐시 타임 옵션 초기 셋업 (`frontend/src/app/providers/QueryProvider.jsx`)
 - [ ] **T007** Zustand를 이용한 인증(Auth) 및 타로 세션(TarotSession) 독립 상태 저장소 기본 세팅 (`frontend/src/store/useAuthStore.js`, `frontend/src/store/useTarotStore.js`)

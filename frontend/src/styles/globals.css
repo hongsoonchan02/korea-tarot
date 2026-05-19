@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #101221;
+  color: #e1e1f5;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #101221;
+  background-image:
+    radial-gradient(circle at top, rgba(208, 188, 255, 0.16), transparent 36%),
+    radial-gradient(circle at 80% 20%, rgba(255, 185, 95, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(11, 13, 27, 1) 0%, rgba(16, 18, 33, 1) 100%);
+  color: #e1e1f5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(208, 188, 255, 0.3);
+  color: #e1e1f5;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-body-md;
+  }
+
+  a {
+    @apply text-primary transition-colors;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-xl border border-white/10 bg-surface-container/70 shadow-glass backdrop-blur-xl;
+  }
+
+  .motion-gpu {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  .primary-glow {
+    @apply shadow-primary-glow;
+  }
+
+  .gold-outline {
+    border: 1px solid rgba(255, 185, 95, 0.5);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.16);
+  }
+
+  .card-orbit-shell {
+    position: relative;
+    height: 18rem;
+    width: min(100%, 17.5rem);
+    perspective: 1200px;
+  }
+
+  .tarot-motion-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 60px rgba(11, 13, 27, 0.55);
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .tarot-motion-card-back {
+    left: 0.75rem;
+    top: 0.5rem;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255, 185, 95, 0.2), transparent 30%),
+      linear-gradient(160deg, rgba(160, 120, 255, 0.28), rgba(29, 31, 45, 0.95));
+  }
+
+  .tarot-motion-card-front {
+    left: -0.25rem;
+    top: 2rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+      linear-gradient(160deg, rgba(208, 188, 255, 0.42), rgba(54, 56, 72, 0.92));
+  }
+}

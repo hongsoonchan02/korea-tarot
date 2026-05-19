@@ -1,4 +1,4 @@
-# AI-Service Verification Checklist
+﻿# AI-Service Verification Checklist
 
 **Purpose**: AI 추론 엔진 및 RAG 서비스 배포 전 기획 명세서 정책 사양 및 기술 헌장 규칙에 충족하는지 무결성을 최종 검증하는 인프라 마스터 체크리스트입니다.  
 **Feature**: `/specs/tarot/ai-service/spec.md`

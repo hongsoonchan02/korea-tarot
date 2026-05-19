@@ -1,4 +1,4 @@
-# Feature Specification: AI Tarot Backend Application
+﻿# Feature Specification: AI Tarot Backend Application
 
 **Feature Branch**: `feat/tarot-backend-core`
 **Created**: 2026-05-19
