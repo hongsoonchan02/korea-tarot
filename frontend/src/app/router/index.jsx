@@ -1,11 +1,13 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
+import { BaseLayout } from '../layouts/BaseLayout';
+import { ProtectedRoute } from './ProtectedRoute';
 import { useAuthStore } from '../../store/useAuthStore';
 
 function AppShell({ title, description }) {
   return (
-    <main className="min-h-screen bg-mystic-radial px-margin-mobile py-16 text-on-background md:px-margin-desktop">
-      <div className="mx-auto flex max-w-container-max flex-col gap-4">
+    <section className="bg-mystic-radial py-4 text-on-background">
+      <div className="flex flex-col gap-4">
         <span className="inline-flex w-fit rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-label-sm uppercase tracking-[0.2em] text-primary">
           Tarot Frontend
         </span>
@@ -18,7 +20,7 @@ function AppShell({ title, description }) {
           </p>
         </section>
       </div>
-    </main>
+    </section>
   );
 }
 
@@ -85,31 +87,42 @@ function RootRedirect() {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootRedirect />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/tarot/main',
-    element: <TarotMainPage />,
-  },
-  {
-    path: '/tarot/loading',
-    element: <TarotLoadingPage />,
-  },
-  {
-    path: '/tarot/result/:id',
-    element: <TarotResultPage />,
-  },
-  {
-    path: '/mypage',
-    element: <MyPage />,
-  },
-  {
-    path: '*',
-    element: <NotFoundPage />,
+    element: <BaseLayout />,
+    children: [
+      {
+        index: true,
+        element: <RootRedirect />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: 'tarot/main',
+            element: <TarotMainPage />,
+          },
+          {
+            path: 'tarot/loading',
+            element: <TarotLoadingPage />,
+          },
+          {
+            path: 'tarot/result/:id',
+            element: <TarotResultPage />,
+          },
+          {
+            path: 'mypage',
+            element: <MyPage />,
+          },
+        ],
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
+      },
+    ],
   },
 ]);
 
