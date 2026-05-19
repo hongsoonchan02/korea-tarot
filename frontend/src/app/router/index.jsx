@@ -1,5 +1,11 @@
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+  useLocation,
+} from 'react-router-dom';
 
+import { AuthLayout } from '../layouts/AuthLayout';
 import { BaseLayout } from '../layouts/BaseLayout';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -25,10 +31,20 @@ function AppShell({ title, description }) {
 }
 
 function LoginPage() {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const location = useLocation();
+  const from = location.state?.from;
+  const postLoginTarget =
+    typeof from === 'string' && from.startsWith('/') ? from : '/tarot/main';
+
+  if (isAuthenticated) {
+    return <Navigate replace to={postLoginTarget} />;
+  }
+
   return (
     <AppShell
       title="Login route scaffold"
-      description="Authentication UI will land here after the protected-route and auth flow tasks are implemented."
+      description={`Authentication UI will land here after the protected-route and auth flow tasks are implemented.${postLoginTarget !== '/tarot/main' ? ` After login, return to ${postLoginTarget}.` : ''}`}
     />
   );
 }
@@ -86,16 +102,22 @@ function RootRedirect() {
 
 const router = createBrowserRouter([
   {
+    path: '/login',
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
     path: '/',
     element: <BaseLayout />,
     children: [
       {
         index: true,
         element: <RootRedirect />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
       },
       {
         element: <ProtectedRoute />,
